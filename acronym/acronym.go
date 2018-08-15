@@ -5,11 +5,15 @@
 // https://golang.org/doc/effective_go.html#commentary
 package acronym
 
+import (
+	"regexp"
+	"strings"
+)
+
 // Abbreviate should have a comment documenting it.
 func Abbreviate(s string) string {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
-	return ""
+	s = strings.ToUpper(s)
+	r, _ := regexp.Compile(`\b(\w)`)
+	chars := r.FindAllString(s, -1)
+	return strings.Join(chars, "")
 }
