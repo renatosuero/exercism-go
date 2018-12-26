@@ -17,4 +17,3 @@ func BenchmarkScore(b *testing.B) {
 		}
 	}
 }
-
