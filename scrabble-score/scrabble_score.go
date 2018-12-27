@@ -9,25 +9,24 @@ func Score(text string) int {
 	text = strings.ToLower(text)
 	result := 0
 	for _, key := range text {
-		letter := string(key)
-		result += defineValue(letter)
+		result += defineValue(key)
 	}
 	return result
 }
 
-func defineValue(letter string) int {
+func defineValue(letter rune) int {
 	switch letter {
-	case "q", "z":
+	case 'q', 'z':
 		return 10
-	case "j", "x":
+	case 'j', 'x':
 		return 8
-	case "k":
+	case 'k':
 		return 5
-	case "f", "h", "v", "w", "y":
+	case 'f', 'h', 'v', 'w', 'y':
 		return 4
-	case "b", "c", "m", "p":
+	case 'b', 'c', 'm', 'p':
 		return 3
-	case "d", "g":
+	case 'd', 'g':
 		return 2
 	default:
 		return 1
