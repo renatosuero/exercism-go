@@ -16,23 +16,20 @@ func Score(text string) int {
 }
 
 func defineValue(letter string) int {
-	if letter == "q" || letter == "z" {
+	switch letter {
+	case "q", "z":
 		return 10
-	}
-	if letter == "j" || letter == "x" {
+	case "j", "x":
 		return 8
-	}
-	if letter == "k" {
+	case "k":
 		return 5
-	}
-	if letter == "f" || letter == "h" || letter == "v" || letter == "w" || letter == "y" {
+	case "f", "h", "v", "w", "y":
 		return 4
-	}
-	if letter == "b" || letter == "c" || letter == "m" || letter == "p" {
+	case "b", "c", "m", "p":
 		return 3
-	}
-	if letter == "d" || letter == "g" {
+	case "d", "g":
 		return 2
+	default:
+		return 1
 	}
-	return 1
 }
