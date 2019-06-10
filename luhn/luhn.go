@@ -1,7 +1,6 @@
 package luhn
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 )
@@ -9,23 +8,21 @@ import (
 //Valid check if the value is valid based in lugh algorithm
 func Valid(text string) bool {
 	text = strings.Replace(text, " ", "", -1)
-	match, _ := regexp.MatchString(`\D`, text)
-	if len(text) < 2 || match {
+	_, err := strconv.Atoi(text)
+	if len(text) < 2 || err != nil {
 		return false
 	}
-	l := len(text) - 1
-	for i := l; i > 0; i = i - 2 {
-		num, _ := strconv.Atoi(text[i-1 : i])
-		num *= 2
-		if num > 9 {
-			num -= 9
-		}
-		text = text[:i-1] + strconv.Itoa(num) + text[i:]
-	}
+
 	sum := 0
-	for _, i := range text {
-		add, _ := strconv.Atoi(string(i))
-		sum += add
+	for i := 0; i < len(text); i++ {
+		digit, _ := strconv.Atoi(text[i : i+1])
+
+		if (len(text)-i)%2 == 0 {
+			double := digit * 2
+			sum += double/10 + double%10
+			continue
+		}
+		sum += digit
 	}
 	return sum%10 == 0
 }
