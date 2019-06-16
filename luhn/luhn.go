@@ -7,21 +7,24 @@ import (
 
 //Valid check if the value is valid based in lugh algorithm
 func Valid(text string) bool {
-	text = strings.Replace(text, " ", "", -1)
+	text = strings.ReplaceAll(text, " ", "")
 	_, err := strconv.Atoi(text)
 	if len(text) < 2 || err != nil {
 		return false
 	}
 
 	sum := 0
-	for i := 0; i < len(text); i++ {
-		digit, _ := strconv.Atoi(text[i : i+1])
+	double := len(text)%2 == 0
+	for _, r := range text {
+		digit := int(r - '0')
+		if double {
+			digit *= 2
+			if digit > 9 {
+				digit -= 9
+			}
 
-		if (len(text)-i)%2 == 0 {
-			double := digit * 2
-			sum += double/10 + double%10
-			continue
 		}
+		double = !double
 		sum += digit
 	}
 	return sum%10 == 0
