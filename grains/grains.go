@@ -12,5 +12,5 @@ func Square(value int) (uint64, error) {
 
 //Total returns total number of grains
 func Total() uint64 {
-	return (1<<64 - 1)
+	return 1<<64 - 1
 }
